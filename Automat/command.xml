@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  
+  <namespace name="html">
+
+    <if type="eq">
+      <value><![CDATA[<]]></value>
+      <state>start_tag</state>
+    </if>
+    
+    <else buffer="text">
+        <state></state>
+    </else>
+    
+    <!-- Початок тегу -->
+    <start_tag>
+
+      <if type="eq">
+        <value><![CDATA[/]]></value>
+        <state>close_tag</state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[!]]></value>
+        <state>open_doctype</state>
+      </if>
+      
+      <if type="in" buffer="open_tag">
+        <value><![CDATA[abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789]]></value>
+        <state>open_tag</state>
+      </if>
+      
+      <else buffer="error">
+        <state>error</state>
+      </else>
+    
+    </start_tag>
+    
+    <!-- Доктипи та коментарі -->
+    <open_doctype>
+    
+      <if type="eq">
+        <value><![CDATA[[]]></value>
+        <state>brauser_comment</state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[-]]></value>
+        <state>open_comment</state>
+      </if>
+
+      <else buffer="doctype">
+        <state>doctype_body</state>
+      </else>
+    
+    </open_doctype>
+    
+    <doctype_body>
+    
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+    
+      <if type="eq">
+        <value><![CDATA[<]]></value>
+        <state>start_tag</state>
+      </if>
+    
+      <else buffer="doctype">
+        <state>doctype_body</state>
+      </else>
+    
+    </doctype_body>
+    
+    <brauser_comment>
+    
+      <if type="eq">
+        <value><![CDATA[]]]></value>
+        <state>brauser_comment_end</state>
+      </if>
+    
+      <else buffer="brauser_comment">
+        <state>brauser_comment</state>
+      </else>
+    
+    </brauser_comment>
+    
+    <brauser_comment_end>
+    
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <else buffer="error">
+        <state>error</state>
+      </else>
+    
+    </brauser_comment_end>
+    
+    <open_comment>
+    
+      <if type="eq" counter="1">
+        <value><![CDATA[-]]></value>
+        <state>open_comment</state>
+      </if>
+          
+      <else>
+        <state>body_comment</state>
+      </else>
+    
+    </open_comment>
+
+    <body_comment>
+      
+      <if type="eq">
+        <value><![CDATA[-]]></value>
+        <state>close_comment_step1</state>
+      </if>
+            
+      <else buffer="comment">
+        <state>body_comment</state>
+      </else> 
+    
+    </body_comment>
+    
+    <close_comment_step1>
+    
+      <if type="eq">
+        <value><![CDATA[-]]></value>
+        <state>close_comment_step2</state>
+      </if>
+      
+      <else buffer="comment">
+        <state>body_comment</state>
+      </else>
+    
+    </close_comment_step1>
+    
+    <close_comment_step2>
+          
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+    
+      <else buffer="comment">
+        <state>body_comment</state>
+      </else>
+    
+    </close_comment_step2>
+    
+    <!-- Тег відкритий -->
+    <open_tag>
+      
+      <if type="in" buffer="open_tag">
+        <value><![CDATA[abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789]]></value>
+        <state>open_tag</state>
+      </if>
+
+      <if type="eq">
+        <value><![CDATA[ ]]></value>
+        <state>body_tag</state>
+      </if>
+
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[/]]></value>
+        <state>end_one_tag</state>
+      </if>
+      
+      <else buffer="text">
+        <state></state>
+      </else>
+    
+    </open_tag>
+    
+    <!-- Тіло тегу -->
+    <body_tag>
+    
+      <if type="eq">
+        <value><![CDATA[ ]]></value>
+        <state>body_tag</state>
+      </if>
+    
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[/]]></value>
+        <state>end_one_tag</state>
+      </if>
+    
+      <else buffer="tag_atr_name">
+        <state>body_tag_atrybute_start_name</state>
+      </else>
+      
+    </body_tag>
+    
+    <!-- Назва атрибута -->
+    <body_tag_atrybute_start_name>
+    
+      <if type="in" buffer="tag_atr_name">
+        <value><![CDATA[abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789]]></value>
+        <state>body_tag_atrybute_start_name</state>
+      </if>
+    
+      <if type="eq">
+        <value><![CDATA[ ]]></value>
+        <state>body_tag_atrybute_end_name</state>
+      </if>
+    
+      <if type="eq">
+        <value><![CDATA[=]]></value>
+        <state>body_tag_atrybute_equal</state>
+      </if>
+    
+    </body_tag_atrybute_start_name>
+    
+    <!-- Знак = після назви атрибута -->
+    <body_tag_atrybute_equal>
+    
+      <if type="eq">
+        <value><![CDATA[ ]]></value>
+        <state>body_tag_atrybute_equal</state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA["]]></value>
+        <state>body_tag_atrybute_start_value2</state>
+      </if>
+    
+      <if type="eq">
+        <value><![CDATA[']]></value>
+        <state>body_tag_atrybute_start_value1</state>
+      </if>
+    
+    </body_tag_atrybute_equal>
+    
+    <!-- Значення атрибута -->
+    <body_tag_atrybute_start_value2>
+      
+      <if type="eq">
+        <value><![CDATA["]]></value>
+        <state>body_tag</state>
+      </if>
+      
+      <if type="eq" buffer="error">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <if type="eq" buffer="error">
+        <value><![CDATA[<]]></value>
+        <state></state>
+      </if>
+      
+      <else buffer="tag_atr_value">
+        <state>body_tag_atrybute_start_value2</state>
+      </else>
+    
+    </body_tag_atrybute_start_value2>
+    
+    <!-- Значення атрибута -->
+    <body_tag_atrybute_start_value1>
+          
+      <if type="eq">
+        <value><![CDATA[']]></value>
+        <state>body_tag</state>
+      </if>
+      
+      <if type="eq" buffer="error">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <if type="eq" buffer="error">
+        <value><![CDATA[<]]></value>
+        <state></state>
+      </if>
+      
+      <else buffer="tag_atr_value">
+        <state>body_tag_atrybute_start_value1</state>
+      </else>
+    
+    </body_tag_atrybute_start_value1>
+    
+    <!-- Назва атрибута закінчилась -->
+    <body_tag_atrybute_end_name>
+    
+      <if type="eq">
+        <value><![CDATA[ ]]></value>
+        <state>body_tag_atrybute_end_name</state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[=]]></value>
+        <state>body_tag_atrybute_equal</state>
+      </if>
+    
+    </body_tag_atrybute_end_name>
+        
+    <!-- Одинарний тег закінчився -->
+    <end_one_tag>
+    
+      <if type="eq" buffer="close_one_tag">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+
+      <else buffer="error">
+        <state>error</state>
+      </else>
+    
+    </end_one_tag>
+    
+    <!-- Закриваючий тег -->
+    <close_tag>
+    
+      <if type="in" buffer="close_tag">
+        <value><![CDATA[abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789]]></value>
+        <state>close_tag</state>
+      </if>
+      
+      <if type="eq">
+        <value><![CDATA[>]]></value>
+        <state></state>
+      </if>
+      
+      <else buffer="text">
+        <state></state>
+      </else>
+    
+    </close_tag>
+    
+    <!-- Помилка -->
+    <error>
+    
+      <else buffer="text">
+        <state></state>
+      </else>
+    
+    </error>
+  
+  </namespace>
+
+  <namespace name="css">
+    
+  </namespace>
+  
+  <namespace name="json">
+    
+  </namespace>
+
+</root>

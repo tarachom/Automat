@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automat", "Automat\Automat.csproj", "{BE2D86C3-6CA0-448A-A56F-FEA384F91A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatLib", "AutomatLib\AutomatLib.csproj", "{8A399817-6553-44C3-A30A-4F208808E4F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE2D86C3-6CA0-448A-A56F-FEA384F91A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2D86C3-6CA0-448A-A56F-FEA384F91A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2D86C3-6CA0-448A-A56F-FEA384F91A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2D86C3-6CA0-448A-A56F-FEA384F91A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A399817-6553-44C3-A30A-4F208808E4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A399817-6553-44C3-A30A-4F208808E4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A399817-6553-44C3-A30A-4F208808E4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A399817-6553-44C3-A30A-4F208808E4F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
