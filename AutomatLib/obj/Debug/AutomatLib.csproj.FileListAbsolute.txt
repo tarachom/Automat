@@ -1,5 +1,0 @@
-D:\Developer\VS\Automat\AutomatLib\bin\Debug\AutomatLib.dll
-D:\Developer\VS\Automat\AutomatLib\bin\Debug\AutomatLib.pdb
-D:\Developer\VS\Automat\AutomatLib\obj\Debug\AutomatLib.csprojResolveAssemblyReference.cache
-D:\Developer\VS\Automat\AutomatLib\obj\Debug\AutomatLib.dll
-D:\Developer\VS\Automat\AutomatLib\obj\Debug\AutomatLib.pdb
