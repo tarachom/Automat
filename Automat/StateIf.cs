@@ -23,6 +23,12 @@ namespace Automat
             if (_Counter != "") Counter = int.Parse(_Counter);
         }
 
+        /// <summary>
+        /// Функція читає ноду
+        /// </summary>
+        /// <param name="rootNode">Вітка в якій потрібно знайти ноду</param>
+        /// <param name="node">Назва ноди</param>
+        /// <returns></returns>
         private string ReadNode(XPathNavigator rootNode, string node)
         {
             XPathNavigator ItemNode = rootNode.SelectSingleNode(node);

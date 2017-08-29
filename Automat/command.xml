@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
   
+  <!--
+  Треба добавити трігери та макроси
+  -->
+  
   <namespace name="html">
 
     <if type="eq">
@@ -350,13 +354,5 @@
     </error>
   
   </namespace>
-
-  <namespace name="css">
-    
-  </namespace>
   
-  <namespace name="json">
-    
-  </namespace>
-
 </root>

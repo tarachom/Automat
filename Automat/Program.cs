@@ -29,6 +29,10 @@ namespace Automat
             XMLTableShema.WriteComment(DateTime.Now.ToString());
             XMLTableShema.WriteStartElement("root");
 
+            /*
+            Зібрані блоки перетворюю в дерево.
+            !!! Цей код працює неправильно, треба використати ще один автомат для побудови дерева, простої перевірки недостатньо
+            */
             foreach (StateBlock block in StatesCommand.StateBlockList)
             {
                 Console.WriteLine(block.Name + " = " + block.Value.Trim());

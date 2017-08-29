@@ -18,6 +18,12 @@ namespace Automat
             BufferName = elseNode.GetAttribute("buffer", "");
         }
 
+        /// <summary>
+        /// Функція читає ноду
+        /// </summary>
+        /// <param name="rootNode">Вітка в якій потрібно знайти ноду</param>
+        /// <param name="node">Назва ноди</param>
+        /// <returns></returns>
         private string ReadNode(XPathNavigator rootNode, string node)
         {
             XPathNavigator ItemNode = rootNode.SelectSingleNode(node);
