@@ -10,9 +10,6 @@ namespace Automat
     {
         static void Main(string[] args)
         {
-            Console.WindowWidth = 150;
-            Console.WindowHeight = 50;
-
             string file_text = File.ReadAllText(@"D:\a.txt", Encoding.GetEncoding("windows-1251"));
 
             States StatesCommand = new States(@"D:\..\command.xml", "html");
